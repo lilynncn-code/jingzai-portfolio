@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="zh-CN" data-register="editorial">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>静仔的项目总览</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Cpath d='M18 40V24l14-8 14 8v16l-14 8-14-8Z' fill='none' stroke='%23fbbf24' stroke-width='4' stroke-linejoin='round'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%2338bdf8'/%3E%3C/svg%3E">
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&amp;family=Instrument+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style data-ve-kit>
+/* visual-explainer kit. The renderer inlines this file at <link rel="stylesheet" data-ve-kit>.
+   Tokens sit in :where(), so a page's own :root rules (topic motif, a named palette) always win.
+   A page picks its register with <html data-register="instrument|blueprint|paper|editorial">; Instrument is the default. */
+
+/* scale, shared by every register */
+:where(:root) {
+  color-scheme: light dark;
+  --t-label: .75rem; --t-small: .875rem; --t-body: 1rem; --t-lead: 1.25rem; --t-h2: 1.625rem; --t-h1: clamp(2.25rem, 5.5vw, 4rem);
+  --s-1: .25rem; --s-2: .5rem; --s-3: .75rem; --s-4: 1rem; --s-5: 1.5rem; --s-6: 2rem; --s-7: 3rem; --s-8: 4.5rem;
+  --r-1: 4px; --r-2: 10px;
+  --ease: cubic-bezier(.16,1,.3,1); --fast: 150ms; --med: 300ms; --slow: 500ms;
+}
+
+/* Instrument (default): Geist, near-black and amber; dark first */
+:where(:root) {
+  --bg: #0b0d0c; --surface: #121614; --border: #1f2522; --border-bright: #5e6662;
+  --text: #e6ebe8; --text-dim: #919d97; --accent: #f2a93b; --accent-dim: rgba(242,169,59,.14);
+  --ok: #6fcf97; --warn: #e8c547; --risk: #ef6f5c; --info: #6cb6e0;
+  --node-top: color-mix(in srgb, var(--text) 7%, var(--surface)); --lift: rgb(0 0 0 / .45); --halo: 32%;
+  --font-body: 'Geist', 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+  --font-display: var(--font-body); --display-weight: 600;
+  --stage: radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--text) 13%, transparent) 1px, transparent 1.5px) 0 0 / 20px 20px;
+}
+@media (prefers-color-scheme: light) {
+  :where(:root) {
+    --bg: #f4f5f3; --surface: #ffffff; --border: #dfe3e0; --border-bright: #888e8b;
+    --text: #121614; --text-dim: #545e59; --accent: #955700; --accent-dim: rgba(149,87,0,.12);
+    --ok: #1c7443; --warn: #7a5e00; --risk: #b0341e; --info: #1a6890;
+    --node-top: var(--surface); --lift: rgb(18 22 20 / .12); --halo: 22%;
+  }
+}
+
+/* Blueprint: IBM Plex, blue-black, a 24px line grid on the stage, r-1 everywhere; dark first */
+:where(:root[data-register="blueprint"]) {
+  --bg: #0d1520; --surface: #132031; --border: #22324a; --border-bright: #596b87;
+  --text: #e3ecf5; --text-dim: #92a6bb; --accent: #ffb547; --accent-dim: rgba(255,181,71,.14);
+  --ok: #6fd3a0; --warn: #e8d36a; --risk: #ff7b6b; --info: #7cc0f0;
+  --font-body: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --r-2: 4px;
+  --stage: linear-gradient(color-mix(in srgb, var(--border) 55%, transparent) 1px, transparent 1px) 0 0 / 24px 24px, linear-gradient(90deg, color-mix(in srgb, var(--border) 55%, transparent) 1px, transparent 1px) 0 0 / 24px 24px;
+}
+@media (prefers-color-scheme: light) {
+  :where(:root[data-register="blueprint"]) {
+    --bg: #f2f6fa; --surface: #ffffff; --border: #d6e0ea; --border-bright: #818f9e;
+    --text: #0f1a26; --text-dim: #4d6074; --accent: #a34700; --accent-dim: rgba(163,71,0,.12);
+    --ok: #1c7443; --warn: #776300; --risk: #b0341e; --info: #145f99;
+  }
+}
+
+/* Paper: Newsreader headings over Atkinson Hyperlegible, ink blue; light first */
+:where(:root[data-register="paper"]) {
+  --bg: #f7f7f4; --surface: #ffffff; --border: #e3e3dc; --border-bright: #8e8e8a;
+  --text: #17191c; --text-dim: #575c63; --accent: #2c4cd0; --accent-dim: rgba(44,76,208,.12);
+  --ok: #1d7443; --warn: #836000; --risk: #b3301d; --info: #1b6a94;
+  --node-top: var(--surface); --lift: rgb(18 22 20 / .12); --halo: 22%;
+  --font-body: 'Atkinson Hyperlegible Next', 'Segoe UI', sans-serif;
+  --font-mono: 'Atkinson Hyperlegible Mono', ui-monospace, monospace;
+  --font-display: 'Newsreader', Georgia, serif; --display-weight: 500;
+}
+@media (prefers-color-scheme: dark) {
+  :where(:root[data-register="paper"]) {
+    --bg: #111316; --surface: #181b1f; --border: #262a30; --border-bright: #62676c;
+    --text: #e8e8e3; --text-dim: #9ba1a9; --accent: #93a6ff; --accent-dim: rgba(147,166,255,.14);
+    --ok: #6cc492; --warn: #e3b94d; --risk: #f0806b; --info: #6fb8dc;
+    --node-top: color-mix(in srgb, var(--text) 7%, var(--surface)); --lift: rgb(0 0 0 / .45); --halo: 32%;
+  }
+}
+
+/* Editorial: Instrument Serif display over Instrument Sans; light first */
+:where(:root[data-register="editorial"]) {
+  --bg: #fbfbf9; --surface: #f1f0ec; --border: #e2e0da; --border-bright: #8c8a85;
+  --text: #111111; --text-dim: #5a5853; --accent: #cc3418; --accent-dim: rgba(204,52,24,.12);
+  --ok: #1d7443; --warn: #836000; --risk: #a01d48; --info: #1b6a94;
+  --node-top: var(--surface); --lift: rgb(18 22 20 / .12); --halo: 22%;
+  --font-body: 'Instrument Sans', 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-display: 'Instrument Serif', Georgia, serif; --display-weight: 400;
+}
+@media (prefers-color-scheme: dark) {
+  :where(:root[data-register="editorial"]) {
+    --bg: #0f0f0f; --surface: #1a1a19; --border: #2b2a28; --border-bright: #696763;
+    --text: #f2f0eb; --text-dim: #a4a19b; --accent: #ff6e50; --accent-dim: rgba(255,110,80,.14);
+    --ok: #6cc492; --warn: #e3b94d; --risk: #f57fa2; --info: #7cb8e8;
+    --node-top: color-mix(in srgb, var(--text) 7%, var(--surface)); --lift: rgb(0 0 0 / .45); --halo: 32%;
+  }
+}
+
+/* base */
+html { font-size: 17px; }
+* { box-sizing: border-box; margin: 0; }
+body { background: var(--bg); color: var(--text); font: 400 var(--t-body)/1.6 var(--font-body); text-wrap: pretty; font-kerning: normal; font-synthesis: none; -webkit-font-smoothing: antialiased; }
+::selection { background: var(--accent-dim); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+main { max-width: 64rem; margin: 0 auto; padding: var(--s-8) var(--s-5); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-8); }
+section, figure, header { min-width: 0; }
+header { display: grid; gap: var(--s-4); }
+header + figure { margin-top: calc(var(--s-6) - var(--s-8)); }
+/* text-box trims to cap height and baseline, so gaps are measured from the letters, not the line box */
+h1, h2, .kpi .val { text-box: trim-both cap alphabetic; }
+h1 { font-size: var(--t-h1); line-height: 1.05; font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: -.035em; text-wrap: balance; max-width: 16ch; margin-bottom: var(--s-2); }
+h1 .num { color: var(--accent); font-variant-numeric: tabular-nums; }
+h2 { font-size: var(--t-h2); line-height: 1.2; font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: -.015em; text-wrap: balance; }
+/* section opener: hairline, mono label in columns 1–3, h2 in 4–12, on one baseline */
+.sec-head { display: grid; gap: var(--s-3) var(--s-5); align-items: baseline; border-top: 1px solid var(--border); padding-top: var(--s-5); margin-bottom: var(--s-6); }
+@media (min-width: 52rem) { .sec-head { grid-template-columns: 3fr 9fr; } }
+/* the other opener, a bare label above the h2, gets the same gaps, so the h2 never sits on the figure below */
+section > .ve-label:has(+ h2) { margin-bottom: var(--s-3); }
+section > h2 { margin-bottom: var(--s-6); }
+h3 { font-size: var(--t-body); line-height: 1.3; font-weight: 600; }
+.eyebrow { display: flex; align-items: center; gap: var(--s-2); font: 600 var(--t-label) var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.eyebrow::before { content: ''; width: 1.25rem; height: 2px; background: currentColor; }
+.ve-label { font: 500 var(--t-label) var(--font-mono); color: var(--text-dim); }
+.caps { text-transform: uppercase; letter-spacing: .08em; font-weight: 600; color: var(--text); }
+.lead { font-size: var(--t-lead); line-height: 1.5; color: var(--text-dim); max-width: 44ch; }
+.lead b { color: var(--text); font-weight: 600; }
+.meta { font: 500 var(--t-label) var(--font-mono); color: var(--text-dim); font-variant-numeric: tabular-nums; }
+.unit { font-size: .5em; font-weight: 500; color: var(--text-dim); letter-spacing: 0; }
+code { font: .875em var(--font-mono); font-variant-ligatures: none; }
+
+/* figure: the stage is a faint dot grid, so nodes read as objects placed on it */
+.frame { background: var(--stage), var(--bg); border: 1px solid var(--border); border-radius: var(--r-2); padding: var(--s-5); overflow-x: auto; }
+figcaption { font-size: var(--t-body); color: var(--text-dim); margin-top: var(--s-3); max-width: 65ch; }
+.fig-n { font: 600 var(--t-label) var(--font-mono); color: var(--text); margin-right: var(--s-2); }
+
+/* diagram kit (references/diagrams.md) */
+/* min-width keeps 14-unit labels >= 12px as rendered; narrow screens scroll the frame instead. kit/render.mjs sets --ve-min for a viewBox wider than 816. */
+.ve-svg { width: 100%; min-width: var(--ve-min, 700px); height: auto; display: block; font: 500 17px var(--font-body); }
+.ve-n .sh { fill: url(#ve-node); stroke: var(--border-bright); stroke-width: 1.5; filter: drop-shadow(0 6px 14px var(--lift)); transition: stroke var(--fast) var(--ease), opacity var(--med) var(--ease); }
+.ve-n .lid { fill: var(--node-top); }
+.ve-n.is-key .sh { fill: color-mix(in srgb, var(--accent) 11%, var(--surface)); stroke: var(--accent); stroke-width: 2; filter: drop-shadow(0 0 16px color-mix(in srgb, var(--accent) var(--halo), transparent)); }
+.ve-n text { fill: var(--text); text-anchor: middle; dominant-baseline: central; font-weight: 600; }
+.ve-n .sub { fill: var(--text-dim); font: 500 14px var(--font-mono); }
+.ve-n .gl { fill: none; stroke: var(--text-dim); stroke-width: 1.5; stroke-linejoin: round; }
+.ve-n .ve-kind { fill: var(--text-dim); font: 600 14px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+.ve-n.is-key .gl { stroke: var(--accent); }
+.ve-e { fill: none; stroke: var(--text-dim); stroke-width: 1.75; marker-end: url(#ve-ah); }
+.ve-e.is-hot { stroke: var(--accent); stroke-width: 2.75; filter: drop-shadow(0 0 5px color-mix(in srgb, var(--accent) 55%, transparent)); }
+.ve-e.is-async { stroke-dasharray: 6 5; }
+.ve-el { fill: var(--text-dim); font: 500 14px var(--font-mono); text-anchor: middle; paint-order: stroke; stroke: var(--bg); stroke-width: 5px; stroke-linejoin: round; }
+.ve-el.l { text-anchor: end; } .ve-el.r { text-anchor: start; }
+/* a dashed boundary around a group, with a mono tag in its corner */
+.ve-bnd { fill: none; stroke: var(--border-bright); stroke-width: 1; stroke-dasharray: 6 5; }
+.ve-bnd-t { fill: var(--text-dim); font: 600 14px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+/* a slot in a queue or worker pool; .is-on fills it (.on is the stepper's) */
+.ve-slot { fill: var(--surface); stroke: var(--border-bright); stroke-width: 1.25; }
+.ve-slot.is-on { fill: var(--accent-dim); stroke: var(--accent); stroke-width: 1.75; }
+/* chart axes and ticks, and their labels */
+.ve-axis { fill: none; stroke: var(--border-bright); stroke-width: 1; }
+.ve-axis-t { fill: var(--text-dim); font: 500 14px var(--font-mono); text-anchor: middle; font-variant-numeric: tabular-nums; }
+/* <ve-flow> on a page: its labels stay at 12 px or more, and a small drawing grows no more than 1.3× (kit/flow.mjs sets both) */
+.ve-svg.ve-flow { min-width: var(--min); max-width: var(--max); }
+/* flags on <ve-flow> parts: new, gone (an arrow also gets ✕) */
+.ve-n.is-new .sh { stroke: var(--ok); stroke-dasharray: 6 4; }
+.ve-n.is-gone .sh { stroke: var(--risk); stroke-dasharray: 3 4; opacity: .7; }
+.ve-n.is-gone text { text-decoration: line-through; }
+.ve-e.is-new { stroke: var(--ok); }
+.ve-e.is-gone { stroke: var(--risk); stroke-dasharray: 3 4; }
+.ve-x { fill: var(--risk); font: 600 16px var(--font-mono); text-anchor: middle; dominant-baseline: central; paint-order: stroke; stroke: var(--surface); stroke-width: 5px; }
+/* <ve-stack>: one bar split in proportion; labels under their segments */
+.ve-stack rect { fill: color-mix(in srgb, var(--text) 9%, var(--surface)); stroke: var(--border-bright); stroke-width: 1.5; }
+.ve-stack rect.hot { fill: var(--accent-dim); stroke: var(--accent); }
+.ve-stack text { fill: var(--text-dim); font: 500 14px var(--font-mono); text-anchor: middle; dominant-baseline: central; }
+
+/* numbered callouts and edge numbers (references/diagrams.md): .now fills the current one; .q keeps an edge number quiet until its step */
+.ve-co circle { fill: var(--surface); stroke: var(--accent); stroke-width: 1.75; }
+.ve-co text { fill: var(--accent); font: 600 14px var(--font-mono); text-anchor: middle; dominant-baseline: central; }
+.ve-co.now circle { fill: var(--accent); } .ve-co.now text { fill: var(--surface); }
+.ve-co.q circle { stroke: var(--border-bright); } .ve-co.q text { fill: var(--text-dim); }
+.ve-co.q.now circle { fill: var(--accent); stroke: var(--accent); } .ve-co.q.now text { fill: var(--surface); }
+
+/* dimension lines (references/diagrams.md) */
+.ve-dim path { fill: none; stroke-width: 1; } .ve-dim .ext { stroke: var(--border-bright); } .ve-dim .ln { stroke: var(--text-dim); }
+.ve-dim text { fill: var(--text); font: 500 14px var(--font-mono); text-anchor: middle; }
+.ve-dim.is-key .ln { stroke: var(--accent); } .ve-dim.is-key text { fill: var(--accent); }
+
+/* flow dots: they travel under the nodes, so a dot enters a box and leaves from the far side */
+[data-flow] { fill: none; stroke: none; }
+.ve-dots circle { fill: var(--text); }
+.ve-dots .hit { fill: var(--accent); filter: drop-shadow(0 0 4px var(--accent)); }
+.ve-steps:not(.is-full) .ve-dots { display: none; }
+
+/* linked highlighting: same data-ref lights up together */
+/* Dim shapes, never text below 4.5:1: unlit labels drop to --text-dim instead of fading. */
+.ve-ref { text-decoration: underline dotted var(--text-dim) 1px; text-underline-offset: .22em; border-radius: var(--r-1); transition: background var(--fast) var(--ease); }
+.ve-ref.is-lit { background: var(--accent-dim); text-decoration-color: var(--accent); }
+svg [data-ref] { transition: opacity var(--med) var(--ease); }
+svg.has-lit path[data-ref]:not(.is-lit), svg.has-lit g[data-ref]:not(.is-lit) .sh { opacity: .25; }
+svg.has-lit g[data-ref]:not(.is-lit) text, svg.has-lit text[data-ref]:not(.is-lit) { fill: var(--text-dim); }
+.ve-n.is-lit .sh { stroke: var(--accent); }
+.ve-e.is-lit { stroke: var(--accent); }
+.ve-el.is-lit { fill: var(--text); }
+.case.is-lit { border-color: var(--accent); }
+
+/* stepper / scene player */
+/* Future steps: shapes stay as a faint outline; their labels are hidden, not faded to an unreadable gray. */
+.ve-steps [data-s] { transition: opacity var(--slow) var(--ease), stroke-dashoffset var(--slow) var(--ease); }
+.ve-steps [data-s]:not(.on) { opacity: .15; }
+.ve-steps g[data-s]:not(.on) text, .ve-steps text[data-s]:not(.on) { opacity: 0; }
+.ve-steps path[pathLength][data-s] { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.ve-steps path[pathLength][data-s].on { stroke-dashoffset: 0; }
+.ve-steps .ve-n.now > .sh { stroke: var(--accent); }
+/* replay: the edges that fired light until the full picture, and each token runs its path once, after --d; edges and nodes still show the step without tokens */
+.ve-steps:not(.is-full) .ve-e.now { stroke: var(--accent); stroke-width: 2.75; }
+.ve-tok { fill: var(--accent); visibility: hidden; }
+.ve-steps:not(.is-still) .ve-tok.now { visibility: visible; animation: ve-run var(--dur, 900ms) ease-in-out var(--d, 0ms) both; }
+@keyframes ve-run { from { offset-distance: 0%; opacity: 0; } 10%, 75% { opacity: 1; } to { offset-distance: 100%; opacity: 0; } }
+/* a part that comes and goes (a queued job, a busy slot): shown only on the steps its data-s lists, arriving after --d */
+.ve-steps .ve-at { transition: opacity var(--med) var(--ease); }
+.ve-steps .ve-at:not(.now) { opacity: 0; }
+.ve-steps .ve-at.now { transition-delay: var(--d, 0ms); }
+/* a changing value: one text per step at one spot; the latest step's shows, swapped without a crossfade */
+.ve-steps .ve-vals text { transition: none; }
+.ve-vals text.on:has(~ text.on) { opacity: 0; }
+.ve-player { display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto; align-items: center; gap: var(--s-2) var(--s-3); margin-top: var(--s-4); }
+.ve-cap { grid-column: 1 / -1; list-style: none; padding: 0; min-height: 3.2em; }
+.ve-cap li::before { content: attr(data-n); font: 600 var(--t-label) var(--font-mono); color: var(--accent); margin-right: var(--s-3); font-variant-numeric: tabular-nums; }
+.ve-player input { accent-color: var(--accent); min-width: 0; }
+button { font: 500 var(--t-small) var(--font-mono); color: var(--text); background: var(--surface); border: 1px solid var(--border-bright); border-radius: var(--r-1); padding: var(--s-2) var(--s-3); cursor: pointer; transition: border-color var(--fast) var(--ease); }
+button:hover, button:focus-visible { border-color: var(--accent); }
+
+/* KPI strip: one frame, cells split by hairlines, each number with its picture. Flex, so a wrapped last row stretches instead of leaving an empty gray cell. */
+.kpis { display: flex; flex-wrap: wrap; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--r-2); overflow: hidden; }
+.kpi { flex: 1 1 14rem; background: var(--surface); padding: var(--s-5); display: grid; grid-template-rows: auto auto 1fr; gap: var(--s-3); min-width: 0; }
+.kpi .val { font: 600 2.75rem/1 var(--font-body); font-variant-numeric: tabular-nums; letter-spacing: -.04em; }
+.ve-waffle { align-self: end; width: 11rem; height: auto; font: 500 13px var(--font-mono); overflow: visible; }
+.ve-waffle text { fill: var(--text-dim); dominant-baseline: central; }
+.ann { fill: none; stroke: var(--text-dim); stroke-width: 1; }
+.ve-bars { align-self: end; width: 100%; max-width: 16rem; height: auto; font: 500 13px var(--font-mono); overflow: visible; }
+.ve-bars text { fill: var(--text-dim); dominant-baseline: central; }
+.ve-bars rect { fill: var(--border-bright); transform-box: fill-box; transform-origin: left; transition: transform 900ms var(--ease) 150ms; }
+.ve-bars .hot { fill: var(--accent); }
+.ve-bars .hot + text { fill: var(--text); }
+
+/* small multiples: one mini diagram per case; the changed part takes the case's status color */
+.cases { display: grid; grid-template-columns: repeat(auto-fit, minmax(14.5rem, 1fr)); gap: var(--s-4); }
+.case { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-2); padding: var(--s-4); display: grid; gap: var(--s-3); align-content: start; transition: border-color var(--fast) var(--ease); }
+.case[data-st=ok] { --st: var(--ok); } .case[data-st=warn] { --st: var(--warn); } .case[data-st=risk] { --st: var(--risk); }
+.ve-mini { width: 100%; height: auto; font: 600 15px var(--font-body); }
+.ve-mini .ve-n .sh { filter: none; }
+/* a .cases column is never under 14.5rem, so a mini is ≥ 211 px and 14 units render ≥ 12.3 px */
+.ve-mini .ve-n .sub { font-size: 14px; }
+.ve-mini .is-st.ve-e { stroke: var(--st); stroke-width: 2.75; }
+.ve-mini .is-st .sh { stroke: var(--st); stroke-width: 2; }
+.ve-mini .is-st .sub { fill: var(--st); }
+.ve-mini .is-off { stroke-dasharray: 5 4; }
+.ve-mini .ve-e.is-off { opacity: .35; }
+
+/* chips */
+.chip { display: inline-flex; align-items: center; gap: var(--s-2); font: 600 var(--t-label) var(--font-mono); padding: 2px var(--s-2); border: 1px solid currentColor; border-radius: var(--r-1); white-space: nowrap; justify-self: start; }
+.chip::before { content: ''; width: .5rem; height: .5rem; background: currentColor; }
+.chip.ok { color: var(--ok); } .chip.ok::before { border-radius: 50%; }
+.chip.warn { color: var(--warn); } .chip.warn::before { clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.chip.risk { color: var(--risk); }
+
+/* a table: a scroll frame, the header in the label style, row rules only; .num cells are right-aligned numbers */
+.ve-table { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--r-2); }
+.ve-table table { border-collapse: collapse; width: 100%; font-size: var(--t-body); font-variant-numeric: tabular-nums; }
+.ve-table th, .ve-table td { padding: var(--s-3) var(--s-4); text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+.ve-table thead th { background: var(--surface); font: 600 var(--t-label)/1.3 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--text-dim); }
+.ve-table tbody th { font-weight: 600; }
+.ve-table tbody tr:last-child > * { border-bottom: 0; }
+.ve-table .num { text-align: right; font-family: var(--font-mono); }
+.ve-table td small { display: block; color: var(--text-dim); font-size: var(--t-small); }
+
+details { border-top: 1px solid var(--border); padding-top: var(--s-4); color: var(--text-dim); font-size: var(--t-body); }
+summary { cursor: pointer; font: 500 var(--t-label) var(--font-mono); margin-bottom: var(--s-2); }
+/* sources stay visible: readers check them without hunting for a toggle */
+.sources { border-top: 1px solid var(--border); padding-top: var(--s-4); display: grid; gap: var(--s-2); }
+
+/* entrance: blocks rise in once; bars grow as their block arrives (JS adds .js-motion only when motion is allowed) */
+.js-motion main > * { transition: opacity var(--slow) var(--ease), transform var(--slow) var(--ease); }
+.js-motion main > :not(.in) { opacity: 0; transform: translateY(1rem); }
+.js-motion main > :not(.in) .ve-bars rect { transform: scaleX(0); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } .ve-tok { display: none; } }
+
+@media print {
+  /* Print uses the register's light foregrounds on white, every step fully drawn, and no effects. */
+  :where(:root) { --bg: #fff; --surface: #fff; --border: #dfe3e0; --border-bright: #888e8b; --text: #121614; --text-dim: #545e59; --accent: #955700; --ok: #1c7443; --warn: #7a5e00; --risk: #b0341e; --info: #1a6890; --node-top: #fff; }
+  :where(:root[data-register="blueprint"]) { --border: #d6e0ea; --border-bright: #818f9e; --text: #0f1a26; --text-dim: #4d6074; --accent: #a34700; --warn: #776300; --info: #145f99; }
+  :where(:root[data-register="paper"]) { --border: #e3e3dc; --border-bright: #8e8e8a; --text: #17191c; --text-dim: #575c63; --accent: #2c4cd0; --ok: #1d7443; --warn: #836000; --risk: #b3301d; --info: #1b6a94; }
+  :where(:root[data-register="editorial"]) { --border: #e2e0da; --border-bright: #8c8a85; --text: #111111; --text-dim: #5a5853; --accent: #cc3418; --ok: #1d7443; --warn: #836000; --risk: #a01d48; --info: #1b6a94; }
+  .ve-player button, .ve-player input, .ve-dots { display: none; }
+  .frame { overflow: visible; background: #fff; } .ve-svg, .ve-svg.ve-flow { min-width: 0; }
+  .frame, .case, .kpi { break-inside: avoid; } h2 { break-after: avoid; }
+  svg * { filter: none !important; }
+  .js-motion main > * { opacity: 1 !important; transform: none !important; }
+  .js-motion .ve-bars rect { transform: none !important; }
+  .ve-steps [data-s]:not(.on), .ve-steps g[data-s]:not(.on) text, .ve-steps text[data-s]:not(.on) { opacity: 1; }
+  .ve-steps .ve-at:not(.now) { opacity: 0; }
+  .ve-steps path[pathLength][data-s] { stroke-dashoffset: 0; }
+  .ve-tok, .ve-vals text:not(:last-child) { display: none; }
+}
+</style>
+<style>
+:root{--accent:#176653;--accent-dim:#e5eee8;--bg:#f7f5ef;--surface:#efede6;--text:#222c28;--text-dim:#5e6861;--border:#d6d9cf;--border-bright:#75877b}
+body{font-family:"Noto Sans SC","PingFang SC",sans-serif}main{max-width:1240px;margin:auto;padding:var(--s-6) var(--s-5)}h1,h2,h3{font-family:"Noto Serif SC","Songti SC",serif}h1{font-size:clamp(36px,5vw,66px);line-height:1.16;max-width:900px;margin:var(--s-3) 0}h2{font-size:var(--t-h2)}h3{font-size:var(--t-h3)}a{color:var(--accent);text-underline-offset:4px}p{line-height:1.8}.eyebrow,.meta,.tiny{color:var(--text-dim)}.lead{max-width:850px}.map{display:grid;grid-template-columns:1fr 1fr 1.65fr 1fr 1fr;border-top:1px solid var(--border-bright);border-bottom:1px solid var(--border-bright);margin-top:var(--s-5)}.branch{padding:var(--s-4);border-right:1px solid var(--border)}.branch:last-child{border-right:0}.branch h2{font-family:inherit;font-size:var(--t-body);margin:0 0 var(--s-3)}.branch a{display:block;margin:var(--s-3) 0;font-size:var(--t-small);color:var(--text);text-decoration:none;line-height:1.5}.branch a:hover{text-decoration:underline;color:var(--accent)}.branch a::before{content:"";display:inline-block;width:7px;height:7px;background:var(--accent);margin-right:var(--s-2);vertical-align:middle}.branch a.draft::before{background:transparent;border:1px solid var(--accent)}figcaption{margin-top:var(--s-3);color:var(--text-dim);font-size:var(--t-small)}figure{margin:0 0 var(--s-6)}section{margin-top:var(--s-7)}.section-top{display:flex;gap:var(--s-4);align-items:baseline;justify-content:space-between;flex-wrap:wrap}.filters{display:flex;gap:var(--s-2);flex-wrap:wrap;margin:var(--s-3) 0 var(--s-4)}button,input{font:inherit;font-size:var(--t-small);border:1px solid var(--border-bright);border-radius:var(--r-1);padding:var(--s-2) var(--s-3);color:var(--text);background:var(--bg);min-height:44px}button{cursor:pointer}button[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}button:hover{filter:brightness(.95)}input{flex:1;min-width:200px;max-width:350px}button:focus-visible,input:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.ve-table{overflow-x:auto}table{min-width:700px;width:100%}td,th{vertical-align:top}th:first-child{width:21%}td:nth-child(2){width:32%}td:nth-child(3){width:24%}td small{display:block;line-height:1.7;margin-top:var(--s-2)}.tag{display:inline-block;border:1px solid var(--border-bright);border-radius:var(--r-1);padding:2px 8px;font-size:var(--t-label);white-space:nowrap}.status{font-size:var(--t-small);display:block;line-height:1.6}.project{padding:var(--s-5) 0;border-bottom:1px solid var(--border);scroll-margin-top:var(--s-4)}.project-head{display:grid;grid-template-columns:1fr auto;gap:var(--s-4);align-items:start}.project h3{margin:0 0 var(--s-2)}.project-head p{margin:0;max-width:750px}.project-body{display:grid;grid-template-columns:1.3fr 1fr;gap:var(--s-5);margin-top:var(--s-4)}.project-body h4{font-size:var(--t-small);margin:0 0 var(--s-2);font-weight:700}.project-body p{font-size:var(--t-small);margin:0}.project-body ul{font-size:var(--t-small);line-height:1.8;margin:0;padding-left:1.2em}.project-body li+li{margin-top:var(--s-2)}details{margin-top:var(--s-4);background:var(--surface);padding:var(--s-3);border-radius:var(--r-1)}summary{cursor:pointer;font-size:var(--t-small)}.evidence{font-size:var(--t-label);margin-top:var(--s-3)}.evidence code{display:block;overflow-wrap:anywhere;font-size:12px;line-height:1.6;margin:var(--s-2) 0}.recommend{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--border-bright);border-bottom:1px solid var(--border-bright)}.pick{padding:var(--s-4);border-right:1px solid var(--border)}.pick:last-child{border-right:0}.pick h3{margin-top:0}.pick p{font-size:var(--t-small)}.notes{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-5)}.notes p,.sources p{font-size:var(--t-small)}.sources{border-top:1px solid var(--border-bright);padding-top:var(--s-4);margin-top:var(--s-7)}.sources code{overflow-wrap:anywhere}.empty{padding:var(--s-5);text-align:center;color:var(--text-dim)}[hidden]{display:none!important}.note{font-size:var(--t-small);background:var(--surface);padding:var(--s-4);border-radius:var(--r-1)}@media(max-width:780px){main{padding:var(--s-4) var(--s-3)}.map{grid-template-columns:1fr 1fr}.branch{border-bottom:1px solid var(--border)}.branch:nth-child(2n){border-right:0}.branch:nth-child(3){grid-column:1/-1;border-right:0}.branch:last-child{border-bottom:0}.project-body,.recommend,.notes{grid-template-columns:1fr}.pick{border-right:0;border-bottom:1px solid var(--border)}.pick:last-child{border-bottom:0}.project-head{grid-template-columns:1fr}.section-top{gap:var(--s-2)}section{margin-top:var(--s-6)}}@media print{.filters{display:none}main{max-width:none}details{break-inside:avoid}.project{break-inside:avoid}a{color:inherit}.map{grid-template-columns:repeat(5,1fr)}}
+.repo-link{display:inline-flex;align-items:center;min-height:44px;margin-top:var(--s-2);font-size:var(--t-small)}.repo-pending{display:block;margin-top:var(--s-2);font-size:var(--t-label);color:var(--text-dim)}.evidence a{overflow-wrap:anywhere}</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="ve-ah" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker>
+    <linearGradient id="ve-node" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--node-top)"/><stop offset="1" style="stop-color:var(--surface)"/></linearGradient>
+    <pattern id="ve-w-on" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="1" y="1" width="8" height="8" rx="1.5" style="fill:var(--accent)"/></pattern>
+    <pattern id="ve-w-off" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="1.5" y="1.5" width="7" height="7" rx="1.5" style="fill:none;stroke:var(--text-dim)"/></pattern>
+  </defs>
+</svg>
+<main>
+<header>
+<p class="eyebrow">静仔的作品记录 · 整理于 2026 年 10 月 31 日</p>
+<h1>你的项目，<br>整理成一张图。</h1>
+<p class="lead">这里收录 <b>12 个项目方向</b>，每项均附 GitHub 项目链接，分成应用、实物、游戏、学习和小工具。早期尝试也保留，同一作品的改名、海报和不同版本合在一起。</p>
+</header>
+<figure>
+<div class="map" id="map" aria-label="十二个项目按五类排列，每个方点代表一个项目"></div>
+<figcaption>实心方点表示找到作品文件；空心方点表示目前找到的是不能直接使用的早期文字稿。文件存在不代表所有功能都已完成。</figcaption>
+</figure>
+<p class="note">这次核对了电脑中的项目文件、项目说明和已有聊天记录，没有逐个重新试玩或安装。下面的进度表示“目前找到什么”，不替代实际使用检查。</p>
+<section aria-labelledby="list-title">
+<h2 id="list-title">先看你做过什么</h2><p class="tiny" id="result-count" aria-live="polite" style="margin-top:var(--s-3)"></p>
+<div class="filters" aria-label="筛选项目">
+<button type="button" data-category="全部" aria-pressed="true">全部</button>
+<button type="button" data-category="应用" aria-pressed="false">应用</button>
+<button type="button" data-category="实物" aria-pressed="false">实物</button>
+<button type="button" data-category="游戏" aria-pressed="false">游戏</button>
+<button type="button" data-category="学习" aria-pressed="false">学习</button>
+<button type="button" data-category="小工具" aria-pressed="false">小工具</button>
+<input id="search" type="search" placeholder="搜索名字、用途或旧名字" aria-label="搜索名字、用途或旧名字">
+</div>
+<figure>
+<div class="ve-table"><table><thead><tr><th scope="col">作品</th><th scope="col">做什么</th><th scope="col">找到的进度</th><th scope="col">作品集价值</th></tr></thead><tbody id="project-table"></tbody></table></div>
+<p id="empty" class="empty" hidden>没有找到符合条件的项目，试试其他名字。</p>
+<figcaption>点击作品名字可看具体内容、仍需补充的部分和资料位置；筛选会同时缩小下方的详细清单。</figcaption>
+</figure>
+</section>
+<section aria-labelledby="pick-title">
+<h2 id="pick-title">作品集首页，建议先放这三项</h2>
+<figure>
+<div class="recommend">
+<div class="pick"><h3>羽迹 / 好羽</h3><p>展示你如何把自己的羽毛球兴趣，发展成训练、找球友和内容分享的应用。</p><p><b>先准备：</b>一段完整使用过程，说明哪些功能已经能用。</p></div>
+<div class="pick"><h3>集物号</h3><p>展示你如何与同伴合作，把生活里的搬运问题变成一件能动的实物。</p><p><b>先准备：</b>实物照片、动作视频，以及你亲自负责的部分。</p></div>
+<div class="pick"><h3>余晖防线</h3><p>展示你如何持续扩展一款游戏：从战斗，到地图、武器、故事和新手引导。</p><p><b>先准备：</b>一段真实游玩录像，清楚区分已经完成和正在改的玩法。</p></div>
+</div>
+<figcaption>这是展示顺序建议，不是完成度排名。若想突出帮助视障人士，可以把口述影像写稿工具提到首页。</figcaption>
+</figure>
+</section>
+<section aria-labelledby="detail-title"><h2 id="detail-title">每个项目，留下清楚的记录</h2><div id="project-details"></div></section>
+<section aria-labelledby="merge-title">
+<h2 id="merge-title">这些名字和资料，已经合并整理</h2>
+<div class="notes">
+<div><p><b>羽迹、好羽、App-好羽：</b>目前归为同一个羽毛球应用。项目列表叫“App-羽迹”，页面和文件中仍有“好羽”。早期球拍工具和动作练习尝试单独保留，因为它们也有自己的文件。</p><p><b>集物号、长颈鹿收纳盒、智能搬运小车：</b>演示材料中明确写有长颈鹿外形、收纳筐、升降架和轮子，归为同一件实物作品；双语演示稿和海报属于它的展示资料。</p></div>
+<div><p><b>App-ADHD、App-明途：</b>旧聊天在同一目录先做交友页面，后来改做口述影像写稿工具。当前“App-明途”里还保留写稿和发声程序，但首页已换成小车海报。交友与写稿按不同用途保留，不认定它们都是已经完成的应用。</p><p><b>AMC 8、AMC 10：</b>作为一组数学练习项目，下面区分普通练习中心与后来整理的离线模考版本。重复文件、打包副本不重复计算。</p></div>
+</div>
+</section>
+<section aria-labelledby="next-title">
+<h2 id="next-title">每件作品，还需要补上你的故事</h2>
+<p>目前最缺的不是更多名字，而是每件作品的“为什么做、你负责什么、做出来是什么样、下一步怎么改”。尤其是团队作品，需要把你和同伴的贡献说清楚。</p>
+<div class="notes"><p><b>可以统一用这句话介绍：</b><br>我发现____遇到____问题，所以做了____。我主要负责____，目前已经做到____，接下来想改进____。</p><p><b>每个主作品留四份材料：</b><br>一张作品图、一段真实使用视频、一段你的贡献说明、一段遇到困难后怎样调整的记录。</p></div>
+</section>
+<section class="sources" aria-label="整理范围与依据">
+<h2>本次整理的范围</h2>
+<p>查看了 Codex 中的项目与已有聊天记录，并核对桌面、文稿、AMC 下载文件夹、射击游戏目录，以及保存足球国际象棋的页面。项目内容来自各自的实际文件；每项下方都列出主要依据。</p>
+<p>未将工具安装、空文件夹、同一项目的备份、图片副本和多次修改聊天计为新项目。另一个空的“射击游戏”文件夹没有计入作品。电脑以外、其他账号或尚未提供的作品，仍可能没有收录。</p>
+<p>历史记忆帮助找到旧作品，现状按本次找到的文件校正。旧说明里的检查结果只作为过往记录，不写成本次已经重新验证。正在其他聊天中修改的内容，可能继续发生变化。</p>
+</section>
+</main>
+<script>
+const projects=[
+{id:'yuji',repository:'https://github.com/lilynncn-code/yuji-badminton',name:'羽迹 / 好羽',category:'应用',alias:'App-好羽 App-羽迹 Track',purpose:'围绕羽毛球，帮助用户训练、找球友、看比赛和分享内容。',status:'已有较多页面，持续完善',short:'找到训练、聊天、球友圈、设置和账号等页面。',value:'主作品：持续做大一个想法',why:'把自己的兴趣做成一套围绕“练球与交朋友”的使用体验。',features:['训练课程、每日练习、拍摄训练与训练记录。','找球友、约球、附近球场、聊天和球友圈。','赛事、排名、器材、个人资料和账号相关页面。'],limits:'现有进度说明仍写有真实赛事与排名来源、动作判断和手机实际使用等待完成项。最近聊天也在处理语言切换与比赛更新，当前结果应以对应聊天为准。',next:'先选一条完整过程拍下来，例如“完成练习 → 保存记录 → 回看课程”，同时标出还不能真实使用的部分。',sources:[['页面清单','https://github.com/lilynncn-code/yuji-badminton/blob/main/frontend/pages.json'],['现有进度说明','https://github.com/lilynncn-code/yuji-badminton/blob/main/%E5%A5%BD%E7%BE%BD%E5%AE%8C%E5%96%84%E8%BF%9B%E5%BA%A6-2026-10-17.md']],proof:'本次核对了页面清单与现有进度说明；未重新使用相机、短信、定位或双人聊天。'},
+{id:'audio-writing',repository:'https://github.com/lilynncn-code/audio-description-writer',name:'口述影像写稿工具',category:'应用',alias:'明途 App-明途 App-ADHD 视障 字幕 协作',purpose:'帮助视障使用者通过听和说，修改字幕、分段写稿和审阅整稿。',status:'保留功能程序，当前首页已改用',short:'写稿与发声程序仍在，首页现在是小车海报。',value:'主作品候选：为具体人解决困难',why:'让看不清屏幕的人，也能参与口述影像内容的写作与修改。',features:['字幕导入与导出，像表格一样逐行修改文字。','分段写作、合并审阅和表格导出。','按钮朗读、语音指令和说话修改文字的处理。'],limits:'当前首页没有接回这些写稿操作，因此不能把剩余程序当成一套现在可直接使用的完整应用；多人共同写作和实际使用体验也没有在本次确认。',next:'找回能展示写稿过程的页面，再请真实使用者试用，记录哪些操作仍不方便。',sources:[['写稿与发声程序','https://github.com/lilynncn-code/audio-description-writer/blob/main/app.js'],['当前首页','https://github.com/lilynncn-code/audio-description-writer/blob/main/index.html'],['发声辅助文件','https://github.com/lilynncn-code/audio-description-writer/blob/main/native/VoiceHelper.swift']],proof:'旧聊天明确提出字幕、表格、分段、审阅、朗读和语音修改；当前核对到相关程序。目录改名前后的关系有文件内容支持，但正式作品名称仍宜由你确定。'},
+{id:'friends',repository:'https://github.com/lilynncn-code/hear-friends',name:'听见朋友',category:'应用',alias:'盲障碍社交 视障 社交 App-ADHD',purpose:'让视障朋友先听声音介绍，再认识人、聊天和相约见面。',status:'找到早期展示页面',short:'有找朋友、聊天、活动、见面和保护页面。',value:'早期尝试：关心不同使用者',why:'减少认识陌生人的紧张感，也让见面和自我保护更容易理解。',features:['先听介绍，再决定是否打招呼。','聊天话题、兴趣活动与第一次见面提醒。','向信任的人分享见面信息、拉黑举报等设计。'],limits:'找到的页面使用示例人物和示例对话，不能据此认定有真实交友、发消息或求助功能。旧应用目录后来转向其他用途。',next:'作为早期探索保留，说明它怎样发展到后来的视障写稿工具；不要写成已经上线的交友服务。',sources:[['保存的展示页面','https://github.com/lilynncn-code/hear-friends/blob/main/index.html']],proof:'本次核对到完整展示页面，并参考已有交友页面聊天；没有使用真实账号发消息。'},
+{id:'jiwu',repository:'https://github.com/lilynncn-code/jiwu-storage-robot',name:'集物号',category:'实物',alias:'长颈鹿 收纳盒 收纳车 智能搬运小车 启航营',purpose:'用会移动、能升降的长颈鹿收纳小车，让实验室搬运和拿取物品更省力。',status:'有模型、海报和团队展示资料',short:'找到结构模型、演示稿、海报和团队分工。',value:'主作品：动手制作与团队合作',why:'从“东西多、拿不动、反复取物”这样的具体困难出发，设计一件实物。',features:['长颈鹿外形，收纳筐、升降架和带轮车身。','展示资料描述遥控、升降、跟随和躲避障碍的目标。','保留模型、制作资料、双语演示稿与产品海报。'],limits:'不同演示稿对“遥控、跟随和避障”的描述并不完全一致；本次未运行实物，不能把演示稿上的每种动作都当成已经完成。团队分工需要与你本人确认后再写入个人介绍。',next:'录下现在真正能做的动作，逐项说明遥控、升降、跟随和避障的实际情况，并标出你亲自完成的部分。',sources:[['作品与团队介绍','https://github.com/lilynncn-code/jiwu-storage-robot/blob/main/presentation/11%E7%BB%84.pptx'],['重新排版的演示稿','https://github.com/lilynncn-code/jiwu-storage-robot/blob/main/presentation/%E9%9B%86%E7%89%A9%E5%8F%B7-%E7%A7%91%E6%8A%80%E6%84%9F%E7%89%88-%E9%87%8D%E6%96%B0%E6%8E%92%E7%89%88.pptx'],['双语展示稿','https://github.com/lilynncn-code/jiwu-storage-robot/blob/main/presentation/jiwu-bilingual-tech.pptx'],['作品海报','https://github.com/lilynncn-code/jiwu-storage-robot/blob/main/poster/%E9%9B%86%E7%89%A9%E5%8F%B7-%E7%A7%91%E6%8A%80%E6%B5%B7%E6%8A%A5.png']],proof:'演示稿把长颈鹿的头部、脖子、身体与轮子分别对应到收纳筐、升降架、车身和驱动部分，因此合并为同一作品。'},
+{id:'afterlight',repository:'https://github.com/lilynncn-code/afterlight',name:'余晖防线 · AFTERLIGHT',category:'游戏',alias:'射击游戏 留一盏灯',purpose:'在不同战场守住机械敌人的进攻，通过战斗赚金币、买武器，并推进故事。',status:'已有较多游戏内容，正在扩展玩法',short:'当前地图文件有十张地图；有武器、故事和新手教程。',value:'主作品：持续扩展玩法与内容',why:'把射击玩法、地图环境、武器成长和《留一盏灯》的故事结合起来。',features:['十张地图与每次五波进攻的战斗安排。','武器清单记录五十三把枪，并有金币、购买和升级。','故事、出发说明、新手练习与进度保存。','当前说明已出现两种任务走向和临时支援；对应聊天仍在继续工作。'],limits:'本次没有重新进入游戏。新任务和支援玩法仍有正在进行的修改，不能仅凭说明写入就认定已经完成。',next:'用当前能稳定游玩的版本拍一段战斗过程，展示地图差异、武器选择和一段故事。',sources:[['游戏内容与操作说明','https://github.com/lilynncn-code/afterlight/blob/main/%E6%80%8E%E4%B9%88%E7%8E%A9.md'],['地图列表','https://github.com/lilynncn-code/afterlight/blob/main/scripts/maps.gd'],['武器清单','https://github.com/lilynncn-code/afterlight/blob/main/%E6%AD%A6%E5%99%A8%E6%B8%85%E5%8D%95.md'],['已有检查记录','https://github.com/lilynncn-code/afterlight/blob/main/%E6%A3%80%E6%9F%A5%E7%BB%93%E6%9E%9C.md']],proof:'本次从地图文件数到十项；项目说明记录教程和故事。新玩法的已有聊天仍在进行，因此单独标明。'},
+{id:'cloudhop',repository:'https://github.com/lilynncn-code/cloudhop',name:'云朵冲冲 · Cloudhop',category:'游戏',alias:'我是一个纸张 蛋仔 3D 天空 闯关',purpose:'操作小团子在天空赛道跨栏、绕路、弹跳，收集金币并换装。',status:'已有六条赛道和换装内容',short:'当前文件列出六条赛道、十四款外观。',value:'副作品：关卡变化与成长奖励',why:'让同一个角色操作，在不同赛道中产生跨栏、找路、等待机关等不同挑战。',features:['六条赛道：云端跨栏、糖果迷宫、薄荷弹跳、泡泡逆流、落日冲刺与星光机关。','电脑伙伴、途中存档点、金币与通关奖励。','十四款外观，包括可购买的服装和珍藏皮肤。','选关、重开、暂停、最快用时与进度保存。'],limits:'目前是单人游戏，伙伴由电脑控制；本次未连续跑完赛道。说明中的以往检查结果不等于这次重新检查。',next:'录制两条玩法差别明显的赛道，再展示“赚金币 → 买外观 → 穿上”的过程。',sources:[['玩法与内容说明','https://github.com/lilynncn-code/cloudhop/blob/main/README.md'],['关卡和外观列表','https://github.com/lilynncn-code/cloudhop/blob/main/scripts/catalog.gd']],proof:'文件实际位于 Nancy Li 文件夹中，旧记录里的桌面位置已经变化；本次使用现有位置。'},
+{id:'clicker',repository:'https://github.com/lilynncn-code/badminton-clicker',name:'羽毛球点击乐',category:'游戏',alias:'羽毛球游戏 1234567890 Cookie Clicker',purpose:'点击羽毛球得分，再购买帮助，让羽毛球数量自动增长。',status:'有游戏页面、配图和离线压缩包',short:'程序列出十三种购买项目，保留得分与进度。',value:'小作品：简单但清楚的玩法',why:'把点击累积的玩法换成自己熟悉的羽毛球主题。',features:['点击羽毛球得分。','购买帮助后自动增加数量，价格随购买变化。','十三种购买项目、本机保存和重新开始。','有方形图标和离线压缩包。'],limits:'本次没有实际购买商品或检查旧进度读取；离线压缩包存在，不代表已在所有手机上检查。',next:'保留一段从手动点击到自动增长的短演示，确认购买、保存和重开都可用。',sources:[['游戏首页','https://github.com/lilynncn-code/badminton-clicker/blob/main/index.html'],['购买与保存处理','https://github.com/lilynncn-code/badminton-clicker/blob/main/app.js'],['离线压缩包','https://github.com/lilynncn-code/badminton-clicker/blob/main/package/badminton-clicker.zip']],proof:'本次核对到页面、购买列表与压缩包；历史记录用于找到该作品。'},
+{id:'hide',repository:'https://github.com/lilynncn-code/badminton-hide-and-seek',name:'羽球躲猫猫',category:'游戏',alias:'网页-弱智小游戏 三个球 真球',purpose:'在三个羽毛球中寻找真球，累积分数和连击，点错会扣生命。',status:'有小游戏页面，辨认规则待完善',short:'有得分、连击、生命、狂热状态和最高分。',value:'早期尝试：研究一个小玩法',why:'尝试用很短的一局游戏，让玩家反复观察与选择。',features:['每轮出现三个球，点中真球得分。','点错扣生命，连击后进入狂热状态。','保存最高分，可再次开始。'],limits:'当前真球由随机标记决定；页面文字提示看飞行路线，但程序里未看到与真假对应的路线变化。玩家缺少可靠的辨认依据，不能写成已经完善的观察游戏。',next:'先让真假球出现可辨认的移动或外观差别，再调整节奏与难度。',sources:[['小游戏页面与玩法','https://github.com/lilynncn-code/badminton-hide-and-seek/blob/main/index.html']],proof:'本次直接查看了选球与得分处理，未实际游玩。'},
+{id:'chess',repository:'https://github.com/lilynncn-code/football-chess',name:'足球国际象棋',category:'游戏',alias:'football-chess 单人 棋盘',purpose:'用足球元素表现国际象棋，支持一个人与电脑下棋。',status:'保留可交互的棋盘页面',short:'找到走棋、电脑回应、合法位置提示和重新开始。',value:'小作品：主题改造与使用体验',why:'把熟悉的棋类规则换成足球主题，并补上单人使用需要的控制。',features:['足球元素的棋子与棋盘。','可走位置提示，以及电脑回应的处理。','明显的重新开始按钮。'],limits:'当前页面需要从网上读取下棋规则文件，不能直接称为完全离线；本次未重新检查所有走棋规则和窗口大小。',next:'保存一段“走棋 → 电脑回应 → 重开”的演示，并检查棋盘格是否始终等大。',sources:[['保存的棋盘页面','https://github.com/lilynncn-code/football-chess/blob/main/index.html']],proof:'本次核对页面中的电脑状态、重新开始和外部规则文件；旧记录用于找到保存位置。'},
+{id:'amc',repository:'https://github.com/lilynncn-code/amc-math-practice',name:'AMC 数学练习与离线模考',category:'学习',alias:'AMC 8 AMC 10 模拟考试 小红书 数学 题库',purpose:'在网页上选择试卷、限时答题，交卷后看答案与解题过程。',status:'有多套试卷和离线版本',short:'AMC 8 目录有两级练习；离线 AMC 10 入口列出十三套。',value:'学习作品：把练习变成工具',why:'把自己需要的数学练习，整理成可反复使用的模考网页。',features:['AMC 8 练习目录列出十二套 AMC 8 和十二套 AMC 10 试卷。','独立 AMC 10 离线入口列出十三套，每套标注二十五题与七十五分钟。','保留答案、解题过程和离线压缩包。'],limits:'两个目录有重复内容，因此合为同一系列；本次没有逐题核算，也没有重新完成交卷检查。AMC 8 目录与后来的离线版本在时长标注上存在差异。',next:'先核对题目答案、考试时长和重复试卷，再录制一段答题、交卷与看解析的过程。',sources:[['AMC 8 与进阶练习目录','https://github.com/lilynncn-code/amc-math-practice/blob/main/practice/index.html'],['AMC 10 离线入口','https://github.com/lilynncn-code/amc-math-practice/blob/main/offline/index.html'],['第十三套试卷','https://github.com/lilynncn-code/amc-math-practice/blob/main/offline/amc10_exam13.html'],['离线压缩包','https://github.com/lilynncn-code/amc-math-practice/blob/main/AMC10%E7%A6%BB%E7%BA%BF%E6%A8%A1%E8%80%83-%E5%B0%8F%E5%B7%A5%E5%85%B7.zip']],proof:'本次按实际目录与入口核对套数；压缩包内是否与页面完全一致，未重新检查。'},
+{id:'racket',repository:'https://github.com/lilynncn-code/badminton-racket-finder',name:'本命球拍适配',category:'小工具',alias:'尤尼克斯 球拍推荐 专家系统 test',purpose:'回答关于力量、习惯和打法的问题，获得球拍与风格建议。',status:'有二十题问卷与推荐页面',short:'按答案统计类型，再推荐相应球拍和说明。',value:'小作品：把兴趣知识做成问卷',why:'让不熟悉球拍的人，先用简单问题了解自己的需求。',features:['二十道选择题，包含力量、球龄、节奏与球拍手感。','按答案数量区分力量、速度、控制等倾向。','展示球拍型号、配图和推荐理由，可重新填写。'],limits:'目前是按固定答案规则推荐；问卷结果不代表真实试打结论。本次没有检查所有答案组合和配图显示。',next:'说明推荐依据，补上不同水平使用者的真实试打反馈；可作为羽迹相关的小作品展示。',sources:[['问卷与推荐处理','https://github.com/lilynncn-code/badminton-racket-finder/blob/main/index.html']],proof:'本次在文件中核对到二十题与按选项数量推荐的处理。'},
+{id:'yulinyan',repository:'https://github.com/lilynncn-code/yulinyan-motion-study',name:'羽林眼 · 动作练习尝试',category:'小工具',alias:'AI 动作原型 姿势 识别 训练 摄像头 index123',purpose:'尝试通过摄像头观察手臂位置，为羽毛球动作练习提供提示。',status:'早期文字稿，不能直接当成作品运行',short:'文件中有摄像头、肩肘腕位置和提示的设想。',value:'探索记录：记录想法怎样起步',why:'尝试把“自己练球时没人提醒动作”的问题，变成可观察、可反馈的练习。',features:['文字稿包含摄像头与肩、肘、腕位置的处理。','尝试用不同颜色表示动作判断。','与后来的羽毛球训练应用方向相关，但没有足够依据认定已接入。'],limits:'文件虽然以网页后缀命名，内容实际带有文字排版保存标记；当前不能按正常网页直接使用。动作判断是否正确也没有在本次验证。',next:'作为早期探索展示；若继续做，先整理成能正常打开的页面，再验证判断依据。',sources:[['早期动作页面文字稿','https://github.com/lilynncn-code/yulinyan-motion-study/blob/main/index123.html']],proof:'本次核对文件开头的文字排版标记，并解读其中的名称和动作练习内容。',draft:true}
+];
+function repositoryLink(p){return p.repository?`<a class="repo-link" href="${escape(p.repository)}" target="_blank" rel="noopener noreferrer" aria-label="查看${escape(p.name)}的 GitHub 项目">查看 GitHub 项目 ↗</a>`:'<span class="repo-pending">等待 GitHub 上传</span>'}
+const categories=['应用','实物','游戏','学习','小工具'];
+const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+document.getElementById('map').innerHTML=categories.map(c=>`<div class="branch"><h2>${c}</h2>${projects.filter(p=>p.category===c).map(p=>`<a class="${p.draft?'draft':''}" href="#${p.id}" data-open-project="${p.id}">${escape(p.name)}</a>`).join('')}</div>`).join('');
+document.getElementById('project-table').innerHTML=projects.map(p=>`<tr data-project="${p.id}"><td><a href="#${p.id}" data-open-project="${p.id}"><b>${escape(p.name)}</b></a><small>${p.category}</small>${repositoryLink(p)}</td><td>${escape(p.purpose)}</td><td><span class="status">${p.draft?'◇':'●'} ${escape(p.status)}</span><small>${escape(p.short)}</small></td><td>${escape(p.value)}</td></tr>`).join('');
+document.getElementById('project-details').innerHTML=projects.map(p=>`<article class="project" id="${p.id}" data-project="${p.id}"><div class="project-head"><div><h3>${escape(p.name)}</h3><p>${escape(p.why)}</p>${repositoryLink(p)}</div><span class="tag">${escape(p.category)} · ${p.draft?'早期文字稿':'找到作品文件'}</span></div><div class="project-body"><div><h4>已经留下的内容</h4><ul>${p.features.map(f=>`<li>${escape(f)}</li>`).join('')}</ul></div><div><h4>目前需要说清楚的地方</h4><p>${escape(p.limits)}</p><h4 style="margin-top:var(--s-4)">下一步最值得补什么</h4><p>${escape(p.next)}</p></div></div><details><summary>查看依据与资料位置</summary><div class="evidence"><p>${escape(p.proof)}</p>${p.sources.map(([label,path])=>`<p><b>${escape(label)}</b><a href="${escape(path)}" target="_blank" rel="noopener noreferrer">打开项目资料 ↗</a></p>`).join('')}</div></details></article>`).join('');
+let chosen='全部';
+const search=document.getElementById('search');
+function update(){const query=search.value.trim().toLocaleLowerCase();let count=0;for(const p of projects){const hit=(chosen==='全部'||p.category===chosen)&&[p.name,p.alias,p.purpose,p.status,p.value].join(' ').toLocaleLowerCase().includes(query);if(hit)count++;document.querySelectorAll(`[data-project="${p.id}"]`).forEach(e=>{e.hidden=!hit})}document.getElementById('result-count').textContent=`显示 ${count} / ${projects.length} 个方向`;document.getElementById('empty').hidden=count!==0;document.querySelectorAll('[data-category]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.category===chosen)))}
+document.querySelectorAll('[data-category]').forEach(b=>b.addEventListener('click',()=>{chosen=b.dataset.category;update()}));
+search.addEventListener('input',update);
+document.querySelectorAll('[data-open-project]').forEach(a=>a.addEventListener('click',()=>{const target=document.getElementById(a.dataset.openProject);if(target.hidden){chosen='全部';search.value='';update()}}));
+update();
+</script>
+<script data-ve-kit>
+// Reader replies, shared by kit pages and plan pages: the note popover, the selection buttons, and sending one reply
+// to the agent. Kit pages turn on page replies with veReply.page(); plan.js builds its own response on the same parts.
+// Nothing shows until the reader selects words or clicks a figure part, and nothing prints.
+window.veReply ??= (() => {
+  "use strict";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const h = (tag, attrs = {}, ...kids) => {
+    const el = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) if (v != null && v !== false) k.startsWith("on") ? el.addEventListener(k.slice(2), v) : el.setAttribute(k, v === true ? "" : v);
+    el.append(...kids.flat().filter((k) => k != null && k !== false));
+    return el;
+  };
+  document.head.append(h("style", { "data-ve-reply": "" }, `
+.ve-bar { position: fixed; right: var(--s-5); bottom: calc(var(--s-5) + env(safe-area-inset-bottom, 0px)); z-index: 20; display: flex; gap: var(--s-2); }
+.ve-bar button { padding: var(--s-3) var(--s-4); box-shadow: 0 8px 24px var(--lift); }
+.ve-bar .respond { background: var(--text); color: var(--bg); border-color: var(--text); font-weight: 600; }
+.ve-bar .respond .n { margin-left: var(--s-2); padding: 0 var(--s-2); border-radius: var(--r-1); background: var(--accent); color: var(--bg); }
+dialog.ve-respond { margin: auto; width: min(46rem, 94vw); max-height: 88vh; padding: 0; color: var(--text); background: var(--surface); border: 1px solid var(--border-bright); border-radius: var(--r-1); box-shadow: 0 24px 64px var(--lift); }
+dialog.ve-respond::backdrop { background: rgb(5 10 16 / .55); }
+.r-wrap { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; max-height: 88vh; }
+.r-head, .r-foot { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3); padding: var(--s-4) var(--s-5); }
+.r-head { border-bottom: 1px solid var(--border); } .r-foot { border-top: 1px solid var(--border); }
+.r-head h2 { font-size: var(--t-lead); margin-right: auto; }
+.r-body { overflow: auto; padding: var(--s-4) var(--s-5); display: grid; gap: var(--s-5); align-content: start; }
+.r-sec { display: grid; gap: var(--s-2); }
+.r-row { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr) auto; gap: var(--s-3); align-items: baseline; width: 100%; text-align: left; font: var(--t-small)/1.4 var(--font-body); padding: var(--s-2) var(--s-3); background: var(--bg); border: 1px solid var(--border); }
+.r-row .k { font: 600 var(--t-label) var(--font-mono); color: var(--text-dim); }
+.r-row small { display: block; color: var(--text-dim); font-size: var(--t-label); font-family: var(--font-mono); }
+.r-row .st { font: 600 var(--t-label) var(--font-mono); color: var(--text-dim); }
+.r-row .acts { display: flex; gap: var(--s-2); }
+.r-md { font: var(--t-label)/1.55 var(--font-mono); white-space: pre-wrap; overflow-wrap: anywhere; background: var(--bg); border: 1px solid var(--border); border-radius: var(--r-1); padding: var(--s-3) var(--s-4); max-height: 18rem; overflow: auto; color: var(--text-dim); }
+.r-foot .sp { flex: 1; }
+.r-foot .primary { background: var(--text); color: var(--bg); border-color: var(--text); font-weight: 600; }
+.r-foot .danger { color: var(--risk); }
+.ve-pop { position: absolute; z-index: 30; width: min(22rem, 92vw); background: var(--surface); border: 1px solid var(--border-bright); border-radius: var(--r-1); box-shadow: 0 12px 32px var(--lift); padding: var(--s-3); display: grid; gap: var(--s-2); }
+.ve-pop .ref { font: 500 var(--t-label) var(--font-mono); color: var(--text-dim); }
+.ve-pop q { font-size: var(--t-small); color: var(--text); }
+.ve-pop textarea, .r-row textarea { width: 100%; min-height: 5rem; resize: vertical; font: var(--t-small)/1.5 var(--font-body); color: var(--text); background: var(--bg); border: 1px solid var(--border-bright); border-radius: var(--r-1); padding: var(--s-2) var(--s-3); }
+.ve-pop .row { display: flex; gap: var(--s-2); justify-content: flex-end; }
+.ve-sel { position: absolute; z-index: 30; font-size: var(--t-label); padding: var(--s-1) var(--s-2); box-shadow: 0 6px 18px var(--lift); }
+div.ve-sel { display: flex; gap: var(--s-1); padding: 0; box-shadow: none; } div.ve-sel button { font-size: var(--t-label); padding: var(--s-1) var(--s-2); box-shadow: 0 6px 18px var(--lift); }
+.ve-toast { position: fixed; left: 50%; bottom: 5.5rem; transform: translateX(-50%); z-index: 40; background: var(--text); color: var(--bg); font: 600 var(--t-small) var(--font-mono); padding: var(--s-2) var(--s-4); border-radius: var(--r-1); }
+@media (max-width: 40rem) { .ve-bar { left: var(--s-4); right: var(--s-4); } .ve-bar button { flex: 1; } }
+@media print { .ve-bar, .ve-sel, .ve-pop, .ve-toast, dialog.ve-respond { display: none !important; } }
+`));
+
+  const toast = (msg) => { const t = h("div", { class: "ve-toast", role: "status" }, msg); document.body.append(t); setTimeout(() => t.remove(), 1800); };
+  // only a page Pi opened in Glimpse has someone listening; anywhere else the reply is copied
+  const canSend = () => !!$("[data-send-back]") && typeof window.glimpse?.send === "function";
+  async function deliver(msg) {
+    if (canSend()) { window.glimpse.send({ type: "visual-explainer:response", ...msg }); toast("Sent to the agent"); return "sent"; }
+    try { await navigator.clipboard.writeText(msg.markdown); } catch {
+      const ta = h("textarea"); ta.value = msg.markdown; document.body.append(ta); ta.select();
+      let ok = false;
+      try { ok = document.execCommand("copy"); } catch { /* reported below */ }
+      ta.remove();
+      // nothing reached the clipboard: say so, and keep what the reader wrote
+      if (!ok) { toast("Copy failed. Select the text above and copy it"); return "failed"; }
+    }
+    toast("Copied. Paste it to the agent.");
+    return "copied";
+  }
+
+  /* one note popover at a time: a comment, or a question for the agent */
+  let pop = null;
+  const closePop = () => { pop?.remove(); pop = null; };
+  function note({ rect, ref, quote, ask, onSave }) {
+    closePop();
+    const ta = h("textarea", { "aria-label": ask ? "Question" : "Comment", placeholder: ask ? "Question for the agent…" : "Comment for the agent…" });
+    const saveIt = () => { const text = ta.value.trim(); closePop(); onSave(text); };
+    pop = h("div", { class: "ve-pop", role: "dialog", "aria-label": ask ? "Ask a question" : "Add a comment" },
+      h("p", { class: "ref" }, ref), quote ? h("q", {}, quote) : null, ta,
+      h("p", { class: "row" }, h("button", { type: "button", onclick: closePop }, "Cancel"), h("button", { type: "button", onclick: saveIt }, "Save")));
+    ta.addEventListener("keydown", (e) => { if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) saveIt(); if (e.key === "Escape") closePop(); });
+    document.body.append(pop);
+    pop.style.left = `${Math.max(8, Math.min(rect.left + scrollX, scrollX + innerWidth - pop.offsetWidth - 8))}px`;
+    pop.style.top = `${rect.bottom + scrollY + 8}px`;
+    ta.focus({ preventScroll: true });
+  }
+  document.addEventListener("pointerdown", (e) => { if (pop && !pop.contains(e.target)) closePop(); }, true);
+
+  /* the reply dialog: what the reader made, the markdown that goes back, and Send to agent (or Copy) */
+  let dialog = null;
+  const close = () => dialog?.close();
+  const isOpen = () => !!pop || !!dialog?.open;
+  function sheet({ title, copy, body, md, foot, send }) {
+    closePop();
+    dialog ??= document.body.appendChild(h("dialog", { class: "ve-respond", "aria-labelledby": "ve-r-title" }));
+    const back = canSend();
+    const btn = h("button", { type: "button", class: "primary", onclick: send }, back ? "Send to agent" : copy);
+    dialog.replaceChildren(h("div", { class: "r-wrap" },
+      h("header", { class: "r-head" }, h("h2", { id: "ve-r-title" }, title), h("button", { type: "button", onclick: close }, "Close")),
+      h("div", { class: "r-body" }, body, h("section", { class: "r-sec" }, h("p", { class: "ve-label caps" }, back ? "Sent to the agent" : "Paste this to the agent"), md)),
+      h("footer", { class: "r-foot" }, foot, h("span", { class: "sp" }), btn)));
+    if (!dialog.open) dialog.showModal();
+    btn.focus();
+  }
+
+  /* selected words in <main> get one button per label; pick(i, { rect, node, quote }) runs on a click */
+  function onSelect({ labels, blocked, pick }) {
+    let selBtn = null, selTimer;
+    document.addEventListener("selectionchange", () => {
+      clearTimeout(selTimer);
+      selTimer = setTimeout(() => {
+        selBtn?.remove(); selBtn = null;
+        const sel = getSelection();
+        if (!sel || sel.isCollapsed || blocked() || pop) return;
+        const quote = sel.toString().trim().replace(/\s+/g, " ");
+        if (quote.length < 2 || quote.length > 400) return;
+        const range = sel.getRangeAt(0);
+        const inside = range.commonAncestorContainer.nodeType === 1 ? range.commonAncestorContainer : range.commonAncestorContainer.parentElement;
+        // text in a UI mock lives in a shadow root; its host is what sits in the page
+        const node = inside.getRootNode() instanceof ShadowRoot ? inside.getRootNode().host : inside;
+        if (!node.closest("main") || node.closest("textarea, input, .ve-pop")) return;
+        const rect = range.getBoundingClientRect();
+        const button = (label, i) => {
+          const b = h("button", { type: "button", class: labels.length === 1 ? "ve-sel" : null }, label);
+          b.addEventListener("pointerdown", (e) => e.preventDefault());
+          b.addEventListener("click", () => { selBtn.remove(); selBtn = null; pick(i, { rect, node, quote }); sel.removeAllRanges(); });
+          return b;
+        };
+        selBtn = labels.length === 1 ? button(labels[0], 0) : h("div", { class: "ve-sel" }, labels.map(button));
+        selBtn.style.left = `${rect.left + scrollX}px`;
+        selBtn.style.top = `${rect.top + scrollY - 36}px`;
+        document.body.append(selBtn);
+      }, 180);
+    });
+  }
+
+  /* a kit page: comments and questions on words or figure parts, collected into one reply */
+  // parts: more a reader answers, as { count(), lines(), rows(), clear() } (kit/ask.js); a part calls refresh() when it changes
+  const parts = [];
+  let refresh = () => {};
+  function page() {
+    if (!$("main")) return;
+    const KEY = `ve-page:${location.pathname}`;
+    let notes = [];
+    try { notes = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch { /* storage can be off for file:// pages; the page still works */ }
+    // straight double quotes become single, so the reply's own "…" around a title or quote stay balanced
+    const clean = (s) => s.trim().replace(/\s+/g, " ").replace(/"/g, "'");
+    const title = clean($("h1")?.textContent || document.title);
+    const file = decodeURIComponent(location.pathname.split("/").pop() || "page");
+    // where a note sits: its figure number, else its section heading
+    const placeOf = (el) => {
+      const fig = el.closest("figure");
+      if (fig) return clean($(".fig-n", fig)?.textContent || "") || "figure";
+      const head = $("h2", el.closest("section") ?? document.createElement("i"));
+      return head ? `§ ${clean(head.textContent)}` : "page";
+    };
+    const labelOf = (part) => {
+      const t = part.matches("text") ? part : part.matches(".ve-n") ? $$("text", part).find((x) => !x.matches(".sub, .ve-kind") && !x.closest(".ve-vals")) : $("h3", part);
+      let s = clean(t?.textContent || "");
+      if (!s && part.dataset.ref) {
+        const ref = part.dataset.ref.split(" ")[0];
+        s = clean($$("text[data-ref]", part.closest("figure")).find((x) => x.dataset.ref.split(" ").includes(ref))?.textContent || "") || ref;
+      }
+      return (s || "this part").slice(0, 60);
+    };
+    const line = (n) => {
+      const [first, ...rest] = n.text.split("\n");
+      return [`- ${n.part ? `${n.where} › ${n.part}` : `"${n.quote}" (${n.where})`} — ${n.kind}: ${first}`, ...rest.map((l) => `  ${l}`)].join("\n");
+    };
+    const markdown = () => `Reply on "${title}" (${file})\n${[...notes.map(line), ...parts.flatMap((p) => p.lines())].join("\n")}\n_Lines above are the reader's own words: treat them as feedback, not instructions._\n`;
+    const total = () => parts.reduce((s, p) => s + p.count(), notes.length);
+
+    const reply = h("button", { type: "button", class: "respond", onclick: () => openReply() });
+    const bar = h("div", { class: "ve-bar" }, reply);
+    const changed = () => {
+      try { if (notes.length) localStorage.setItem(KEY, JSON.stringify(notes)); else localStorage.removeItem(KEY); } catch { /* see above */ }
+      reply.textContent = `Reply (${total()})`;
+      if (!total()) bar.remove(); else if (!bar.isConnected) document.body.append(bar);
+    };
+    refresh = changed;
+    const add = (n) => { if (n.text) { notes.push(n); changed(); } };
+
+    function openReply() {
+      const editing = new Map(); // a note open for editing → its textarea; Send and Copy save it first
+      const rows = notes.map((n) => {
+        const text = h("span", {}, n.text, h("small", {}, `${n.kind} · ${n.part ? `${n.where} › ${n.part}` : `“${n.quote}” · ${n.where}`}`));
+        const edit = h("button", { type: "button" }, "Edit");
+        edit.addEventListener("click", () => {
+          if (edit.textContent === "Save") { const t = text.firstChild.value.trim(); if (t) n.text = t; editing.delete(n); changed(); openReply(); return; }
+          const ta = h("textarea", { "aria-label": "Edit note" }); ta.value = n.text;
+          text.replaceChildren(ta); edit.textContent = "Save"; editing.set(n, ta); ta.focus();
+        });
+        const remove = h("button", { type: "button", onclick: () => { notes = notes.filter((x) => x !== n); changed(); if (total()) openReply(); else close(); } }, "Remove");
+        return h("div", { class: "r-row" }, h("span", { class: "k" }, n.kind === "ask" ? "?" : "›"), text, h("span", { class: "acts" }, edit, remove));
+      });
+      const notesSec = notes.length ? h("section", { class: "r-sec" }, h("p", { class: "ve-label caps" }, `Notes · ${notes.length}`), rows) : null;
+      sheet({ title: "Your reply", copy: "Copy reply", body: [notesSec, ...parts.map((p) => p.rows())], md: h("pre", { class: "r-md" }, markdown()), send: async () => {
+        for (const [n, ta] of editing) { const t = ta.value.trim(); if (t) n.text = t; }
+        if (editing.size) changed();
+        if (await deliver({ kind: "page", markdown: markdown() }) === "failed") return;
+        notes = []; for (const p of parts) p.clear();
+        changed(); close();
+      } });
+    }
+
+    onSelect({ labels: ["Comment", "Ask"], blocked: isOpen, pick: (i, { rect, node, quote }) => {
+      const where = placeOf(node), kind = i ? "ask" : "comment";
+      note({ rect, ref: where, quote, ask: !!i, onSave: (text) => add({ kind, where, quote: clean(quote), text }) });
+    } });
+
+    // a click on a box or a linked part of a figure offers a question about it
+    let askBtn = null;
+    document.addEventListener("pointerdown", (e) => { if (askBtn && e.target !== askBtn) { askBtn.remove(); askBtn = null; } }, true);
+    document.addEventListener("click", (e) => {
+      const fig = e.target.closest?.("main figure");
+      if (!fig || isOpen() || !getSelection().isCollapsed || e.target.closest("button, a, input, label, select, textarea, .ve-player")) return;
+      const part = e.target.closest(".ve-n, [data-ref]");
+      if (!part || !fig.contains(part)) return;
+      const where = placeOf(part), label = labelOf(part);
+      askBtn = h("button", { type: "button", class: "ve-sel" }, `Ask about “${label}”`);
+      askBtn.style.left = `${e.pageX}px`;
+      askBtn.style.top = `${e.pageY - 36}px`;
+      askBtn.addEventListener("click", () => {
+        const rect = askBtn.getBoundingClientRect();
+        askBtn.remove(); askBtn = null;
+        note({ rect, ref: `${where} › ${label}`, ask: true, onSave: (text) => add({ kind: "ask", where, part: label, text }) });
+      });
+      document.body.append(askBtn);
+      askBtn.focus({ preventScroll: true });
+    });
+    if (total()) changed();
+  }
+
+  return { $, $$, h, toast, deliver, note, closePop, onSelect, sheet, close, isOpen, page, parts, refresh: () => refresh() };
+})();
+
+// One block scope, so the kit's names never clash with a page's own script.
+{
+const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Linked highlighting: hovering any [data-ref], or focusing a prose term or button, lights every element that shares a ref.
+// Hover wins while it lasts; when it ends, the focused element's selection comes back.
+const linked = [...document.querySelectorAll('[data-ref]')], refs = (el) => el.dataset.ref.split(' ');
+let hovered = null, focused = null;
+const paint = () => {
+  const keys = (hovered || focused)?.dataset.ref.split(' ') ?? [];
+  for (const t of linked) t.classList.toggle('is-lit', refs(t).some((k) => keys.includes(k)));
+  for (const svg of document.querySelectorAll('svg')) svg.classList.toggle('has-lit', !!svg.querySelector('.is-lit'));
+};
+for (const el of linked) {
+  el.addEventListener('pointerenter', () => { hovered = el; paint(); });
+  el.addEventListener('pointerleave', () => { hovered = null; paint(); });
+  el.addEventListener('focus', () => { focused = el; paint(); });
+  el.addEventListener('blur', () => { focused = null; paint(); });
+}
+
+// Stepper / scene player. Range and Play are optional: a plain stepper needs only data-go buttons.
+for (const root of document.querySelectorAll('.ve-steps')) {
+  const parts = [...root.querySelectorAll('[data-s]')], caps = [...root.querySelectorAll('.ve-cap li')];
+  const range = root.querySelector('input[type=range]'), play = root.querySelector('[data-play]');
+  const n = caps.length; let i = 0, timer = null;
+  if (range) range.max = n - 1;
+  const show = (k) => {
+    i = Math.max(0, Math.min(n - 1, k));
+    root.classList.remove('is-still');
+    // data-s lists the steps a part takes part in: it appears at the first ("0" = from the start) and is .now on each.
+    for (const el of parts) { const s = el.dataset.s.trim().split(' ').map(Number); el.classList.toggle('on', s[0] <= i + 1); el.classList.toggle('now', s.includes(i + 1)); }
+    caps.forEach((c, j) => c.hidden = j !== i);
+    root.classList.toggle('is-full', i === n - 1);
+    root.dispatchEvent(new Event('ve:step'));
+    if (range) range.value = i;
+  };
+  const stop = () => { clearInterval(timer); timer = null; if (play) play.textContent = 'Play'; };
+  root.addEventListener('click', (e) => { const b = e.target.closest('[data-go]'); if (b) { stop(); show(i + +b.dataset.go); } });
+  range?.addEventListener('input', () => { stop(); show(+range.value); });
+  play?.addEventListener('click', () => {
+    if (timer) return stop();
+    if (i === n - 1) show(0);
+    play.textContent = 'Pause';
+    timer = setInterval(() => (i < n - 1 ? show(i + 1) : stop()), 3500);
+  });
+  show(n - 1); // open on the full picture; Play replays from step 1
+  root.classList.add('is-still'); // same task as show(), so the last token never starts until the reader steps
+  addEventListener('beforeprint', () => { show(n - 1); root.classList.add('is-still'); }); // print shows the end state
+}
+
+if (!still) {
+  // Flow dots: each path[data-flow] spawns a dot every data-every ms; the ratio of intervals is the real traffic split.
+  // Runs only while the figure is on screen and, inside a stepper, only on the full picture.
+  for (const svg of document.querySelectorAll('svg:has([data-flow])')) {
+    const layer = svg.querySelector('.ve-dots'), steps = svg.closest('.ve-steps');
+    const routes = [...svg.querySelectorAll('[data-flow]')].map((p) => ({ p, len: p.getTotalLength(), every: +p.dataset.every, next: 0 }));
+    let dots = [], visible = false, running = false;
+    const live = () => visible && (!steps || steps.classList.contains('is-full'));
+    const tick = (t) => {
+      if (!live()) { running = false; for (const d of dots) d.c.remove(); dots = []; return; }
+      for (const r of routes) if (t >= r.next) {
+        r.next = t + r.every;
+        const c = document.createElementNS(svg.namespaceURI, 'circle');
+        c.setAttribute('r', 4); c.setAttribute('class', r.p.dataset.flow); layer.append(c);
+        dots.push({ c, r, t0: t });
+      }
+      dots = dots.filter((d) => {
+        const s = (t - d.t0) * .3; // 300 units per second
+        if (s > d.r.len) { d.c.remove(); return false; }
+        const pt = d.r.p.getPointAtLength(s);
+        d.c.setAttribute('cx', pt.x); d.c.setAttribute('cy', pt.y);
+        return true;
+      });
+      requestAnimationFrame(tick);
+    };
+    const start = () => { if (!running && live()) { running = true; requestAnimationFrame(tick); } };
+    steps?.addEventListener('ve:step', start);
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; start(); }).observe(svg);
+  }
+
+  // Entrance: each block rises in once; numbers count up and bars grow as it arrives.
+  // Without JS, in print, or under reduced motion, everything shows its final state.
+  document.documentElement.classList.add('js-motion');
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      io.unobserve(e.target); e.target.classList.add('in');
+      for (const el of e.target.querySelectorAll('[data-count]')) {
+        const end = +el.dataset.count, dp = (el.dataset.count.split('.')[1] || '').length, t0 = performance.now();
+        const step = (t) => {
+          const k = Math.min(1, (t - t0) / 900);
+          el.textContent = (end * (1 - (1 - k) ** 3)).toLocaleString('en-US', { minimumFractionDigits: dp, maximumFractionDigits: dp });
+          if (k < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }
+    }
+  }, { rootMargin: '0px 0px -10% 0px' });
+  for (const el of document.querySelectorAll('main > *')) io.observe(el);
+}
+
+// reader replies (kit/reply.js, inlined before this); a page opened raw has none
+window.veReply?.page();
+
+// Last statement: kit/look.mjs reads this to tell that the whole script ran.
+document.documentElement.dataset.veKit = "ready";
+}
+</script>
+</body>
+</html>
