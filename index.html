@@ -8,6 +8,8 @@
   <title>Nancy 李盈萱 — 把热爱做成作品</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/hero-player.webp" as="image">
+  <link rel="preload" href="assets/fonts/display-sport.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/chinese-sans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&amp;family=Instrument+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
@@ -308,10 +310,13 @@ summary { cursor: pointer; font: 500 var(--t-label) var(--font-mono); margin-bot
 }
 </style>
   <style>
+    @font-face { font-family: "Nancy Display"; src: url("assets/fonts/display-sport.woff2") format("woff2"); font-style: italic; font-weight: 700; font-display: swap; }
+    @font-face { font-family: "Nancy Labels"; src: url("assets/fonts/labels-sport.woff2") format("woff2"); font-style: normal; font-weight: 600; font-display: swap; }
+    @font-face { font-family: "Nancy Chinese"; src: url("assets/fonts/chinese-sans.woff2") format("woff2"); font-style: normal; font-weight: 400 900; font-display: swap; }
     :root { color-scheme: dark; --page: #171816; --paper: #f2efe7; --quiet: #b5b5a9; --red: #ff705b; --rule: #41423a; --accent: #ff705b; --bg: #171816; --text: #f2efe7; --text-dim: #b5b5a9; --content-width: 1440px; --gutter: clamp(22px, 4.5vw, 76px); }
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 92px; }
-    body { margin: 0; padding: 0; max-width: none; background: var(--page); color: var(--paper); font-family: "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif; -webkit-font-smoothing: antialiased; }
+    body { margin: 0; padding: 0; max-width: none; background: var(--page); color: var(--paper); font-family: "Nancy Chinese", "PingFang SC", "Microsoft YaHei", sans-serif; -webkit-font-smoothing: antialiased; }
     body.dialog-open { overflow: hidden; }
     main { width: 100%; max-width: none; margin: 0; padding: 0; }
     h1,h2,h3,p,figure { margin: 0; }
@@ -629,6 +634,15 @@ summary { cursor: pointer; font: 500 var(--t-label) var(--font-mono); margin-bot
       .hero-projects a { font-size: 11px; }
       .hero-kicker { top: 105px; }
     }
+    .hero h1 { font-family: "Nancy Display", sans-serif; font-style: italic; font-weight: 700; letter-spacing: -.065em; line-height: 1; margin-left: -.025em; padding-right: .13em; }
+    .hero-name strong { font-weight: 800; letter-spacing: .06em; transform: skewX(-6deg); transform-origin: left center; }
+    .wordmark, .section-label, .hero-kicker, .about-signature { font-family: "Nancy Labels", "Nancy Chinese", sans-serif; font-weight: 600; }
+    .wordmark { letter-spacing: .11em; }
+    .brand-mark { font-family: "Nancy Display", sans-serif; font-weight: 700; }
+    .section-title, .about-title { font-weight: 800; letter-spacing: -.045em; }
+    .feature-line h3, .project-copy h3, .detail-copy h2 { font-weight: 750; letter-spacing: -.025em; }
+    .site-nav, .filter-button, .source-link { font-weight: 600; }
+    .about-signature { font-style: normal; letter-spacing: .02em; }
   </style>
 </head>
 <body>
