@@ -10,6 +10,32 @@
   let lastTrigger = null;
   let previousHash = '#work';
   let activeId = null;
+  const previews = [...document.querySelectorAll('[data-preview-video]')];
+  const visiblePreviews = new Set();
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const pauseDetailVideos = () => content.querySelectorAll('video').forEach(video => video.pause());
+  const updatePreviews = () => previews.forEach(video => {
+    if (!document.hidden && !dialog.open && !reducedMotion.matches && visiblePreviews.has(video)) {
+      video.muted = true;
+      if (!video.getAttribute('src')) video.src = video.dataset.src;
+      video.play().catch(() => {});
+    } else video.pause();
+  });
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(({ target, isIntersecting }) => {
+        if (isIntersecting) visiblePreviews.add(target);
+        else visiblePreviews.delete(target);
+      });
+      updatePreviews();
+    }, { threshold: 0.15 });
+    previews.forEach(video => observer.observe(video));
+  }
+  reducedMotion.addEventListener('change', updatePreviews);
+  document.addEventListener('visibilitychange', () => {
+    updatePreviews();
+    if (document.hidden) pauseDetailVideos();
+  });
   const imageDialog = document.querySelector('#image-dialog');
   const largeImage = document.querySelector('#large-image');
   const imageScroll = document.querySelector('.image-scroll');
@@ -70,9 +96,11 @@
       if (!location.hash.startsWith('#project-')) previousHash = location.hash || '#work';
     }
     activeId = id;
+    pauseDetailVideos();
     content.replaceChildren(template.content.cloneNode(true));
     document.body.classList.add('dialog-open');
     if (!dialog.open) dialog.showModal();
+    updatePreviews();
     dialog.scrollTop = 0;
     closeButton.focus({ preventScroll: true });
   };
@@ -113,6 +141,8 @@
     if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closeProject();
   });
   dialog.addEventListener('close', () => {
+    pauseDetailVideos();
+    updatePreviews();
     if (imageDialog.open) imageDialog.close();
     document.body.classList.remove('dialog-open');
     activeId = null;
