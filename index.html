@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#171816">
   <title>Nancy 李盈萱 — 把热爱做成作品</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="assets/projects/cloudhop-play.webp" as="image">
+  <link rel="preload" href="assets/hero-player.webp" as="image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&amp;family=Instrument+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
@@ -607,10 +607,10 @@ summary { cursor: pointer; font: 500 var(--t-label) var(--font-mono); margin-bot
     .gallery-video video { display: block; width: 100%; height: auto; max-height: 68svh; background: #080a08; object-fit: contain; }
     @media (max-width: 650px) { .gallery-video video { max-height: none; } }
 
-    .hero { background: #171917 url("assets/projects/cloudhop-play.webp") 65% center / cover no-repeat; }
+    .hero { background: #171917 url("assets/hero-player.webp") 67% 65px / auto 89% no-repeat; }
     .hero-mosaic { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
     .site-header { background: linear-gradient(180deg, #10160ee6, #10160e00); }
-    .mosaic-shade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, #11170ff2 0%, #11170fc4 28%, #11170f22 62%, #11170f08), linear-gradient(0deg, #11170ff2 0%, #11170f33 35%, #11170f00 70%); }
+    .mosaic-shade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, #11170fe8 0%, #11170f8c 28%, #11170f00 58%), linear-gradient(0deg, #11170fe6 0%, #11170f22 27%, #11170f00 58%); }
     .hero-inner { z-index: 1; }
     .hero-kicker, .hero-copy { text-shadow: 0 2px 24px #0a110b; }
     .hero-kicker { background: #11170fc9; padding: 8px 11px; }
@@ -622,7 +622,8 @@ summary { cursor: pointer; font: 500 var(--t-label) var(--font-mono); margin-bot
     @media (pointer: coarse) { .mosaic-touch-hint { display: inline; } .mosaic-mouse-hint { display: none; } }
     @media (max-width: 650px) {
       .hero { min-height: 780px; height: 100svh; max-height: 1040px; }
-      .mosaic-shade { background: linear-gradient(0deg, #11170ff5 0%, #11170fd9 25%, #11170f28 65%, #11170f44 100%); }
+      .hero { background-position: 60% 64px; background-size: auto 72%; }
+      .mosaic-shade { background: linear-gradient(0deg, #11170ff5 0%, #11170fd9 21%, #11170f00 58%); }
       .hero-copy { padding-bottom: 15px; }
       .hero-projects { margin-bottom: 18px; gap: 10px 20px; }
       .hero-projects a { font-size: 11px; }
@@ -641,7 +642,8 @@ summary { cursor: pointer; font: 500 var(--t-label) var(--font-mono); margin-bot
   </header>
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
-      <canvas class="hero-mosaic" aria-hidden="true" data-images="assets/projects/cloudhop-play.webp,assets/projects/afterlight-play.webp,assets/projects/jiwu-model.webp"></canvas>
+      <canvas class="hero-mosaic" aria-hidden="true" data-images="assets/hero-player.webp"></canvas>
+      <p class="sr-only">石宇奇跃起挥拍的照片，以细小马赛克方块呈现。</p>
       <div class="mosaic-shade" aria-hidden="true"></div>
       <div class="shell hero-inner">
         <p class="hero-kicker"><span>个人作品集</span> PORTFOLIO / 2026</p>
@@ -700,7 +702,7 @@ summary { cursor: pointer; font: 500 var(--t-label) var(--font-mono); margin-bot
 <template data-project="racket"><div class="detail-gallery"><figure class="gallery-item"><a href="assets/projects/racket-screen.webp" data-view-image="0" aria-label="放大查看：球拍适配问卷实际页面"><img src="assets/projects/racket-screen.webp" width="1200" height="800" alt="球拍适配问卷实际页面" loading="lazy"><span class="image-zoom">放大查看 ↗</span></a><figcaption>球拍适配问卷实际页面</figcaption></figure></div><div class="detail-copy"><p class="detail-eyebrow">小工具 / 已有问卷页面</p><h2 id="detail-title">本命球拍适配</h2><p class="detail-purpose">回答关于力量、球龄、习惯和打法的问题，获得球拍与风格建议。</p><div class="detail-columns"><div><h3>这个想法从哪里来</h3><p>让不熟悉球拍的人，先用简单问题了解自己的需求。</p><div class="detail-current"><h3>目前走到了哪里</h3><p>已有问卷和推荐页面，建议由预先设定的答案规则生成，不代表真实试打结果。</p></div></div><div><h3>项目里的主要内容</h3><ul><li>二十道选择题，了解力量、球龄、节奏与手感。</li><li>根据答案归纳力量、速度、控制等倾向。</li><li>展示球拍型号、图片和推荐理由，支持重新填写。</li></ul></div></div><div class="detail-actions"><a class="source-link" href="https://github.com/lilynncn-code/badminton-racket-finder" target="_blank" rel="noopener noreferrer">查看项目文件 <span aria-hidden="true">↗</span></a><button type="button" class="next-project">下一个项目 →</button></div></div></template>
 <template data-project="yulinyan"><div class="detail-gallery"><figure class="gallery-item"><a href="assets/projects/yulinyan-draft.webp" data-view-image="0" aria-label="放大查看：原始文字稿节选，尚不能直接使用"><img src="assets/projects/yulinyan-draft.webp" width="1200" height="800" alt="原始文字稿节选，尚不能直接使用" loading="lazy"><span class="image-zoom">放大查看 ↗</span></a><figcaption>原始文字稿节选，尚不能直接使用</figcaption></figure></div><div class="detail-copy"><p class="detail-eyebrow">小工具 / 早期构想</p><h2 id="detail-title">羽林眼</h2><p class="detail-purpose">探索通过摄像头观察手臂位置，为羽毛球动作练习提供提示。</p><div class="detail-columns"><div><h3>这个想法从哪里来</h3><p>从自己练球时没人提醒动作的困扰出发，思考怎样获得更及时的反馈。</p><div class="detail-current"><h3>目前走到了哪里</h3><p>目前保留的是早期文字稿，还不能直接使用。需要先整理成能打开的页面，再检查动作提示是否可靠。</p></div></div><div><h3>项目里的主要内容</h3><ul><li>摄像头观察与肩、肘、腕的位置设想。</li><li>用不同颜色提示动作情况。</li><li>记录动作练习工具的早期思路。</li></ul></div></div><div class="detail-actions"><a class="source-link" href="https://github.com/lilynncn-code/yulinyan-motion-study" target="_blank" rel="noopener noreferrer">查看项目文件 <span aria-hidden="true">↗</span></a><button type="button" class="next-project">下一个项目 →</button></div></div></template>
   <noscript><p style="padding:24px;text-align:center">项目图片与简要介绍可直接浏览；开启浏览器的互动功能后，还可以筛选类别和展开更多介绍。</p></noscript>
-  <script src="assets/hero-mosaic.js" defer></script>
+  <script src="assets/hero-mosaic.js?v=player-fine" defer></script>
   <script src="assets/portfolio.js" defer></script>
 </body>
 </html>
